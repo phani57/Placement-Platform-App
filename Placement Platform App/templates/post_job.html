@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Job</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* background: linear-gradient(120deg, #e0eafc, #cfdef3); */
+            background: url("{{ url_for('static', filename='images/post_job.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #ffffff;
+            padding: 40px 35px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 26px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 22px;
+            border: 1px solid #dfe6e9;
+            border-radius: 8px;
+            background-color: #f9fbfd;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #5dade2;
+            background-color: #ffffff;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: linear-gradient(135deg, #5dade2, #3498db);
+            color: white;
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+        .postanewjob {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="postanewjob">Post a New Job</h2>
+        <form method="POST">
+            <label for="title">Job Title:</label>
+            <input type="text" name="title" id="title" required>
+
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" rows="4" required></textarea>
+
+            <label for="target">Target Audience:</label>
+            <select name="target" id="target" required>
+                <option value="" disabled selected>-- Select Audience --</option>
+                <option value="student">Students</option>
+                <option value="all">Everyone</option>
+            </select>
+
+            <label for="skills">Skills (comma separated):</label>
+            <input type="text" name="skills" id="skills">
+
+            <label for="duration">Duration:</label>
+            <input type="text" name="duration" id="duration">
+
+            <label for="stipend">Stipend:</label>
+            <input type="text" name="stipend" id="stipend">
+
+            <label for="application_deadline">Application Deadline:</label>
+            <input type="date" name="application_deadline" id="application_deadline">
+
+            <label for="contact_email">Contact Email:</label>
+            <input type="email" name="contact_email" id="contact_email" value="{{ current_user.email }}">
+
+            <button type="submit">Post Job</button>
+        </form>
+    </div>
+</body>
+</html>

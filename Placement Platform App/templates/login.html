@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<style>
+    body {
+        min-height: 100vh;
+        background: url("{{ url_for('static', filename='images/loginbackground.png') }}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .login-container {
+        max-width: 400px;
+        margin: 10vh auto 0 auto;
+        background: rgba(255,255,255,0.13);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31,38,135,0.25);
+        backdrop-filter: blur(7px);
+        padding: 2.5rem 2rem 2rem 2rem;
+        color: #fff;
+    }
+    h2 {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.13);
+    }
+    label {
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+        color: #fff;
+    }
+    .form-control {
+        border-radius: 30px;
+        border: none;
+        padding: 0.7rem 1.1rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        background: rgba(255,255,255,0.25);
+        color: #333;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        transition: box-shadow 0.2s;
+    }
+    .form-control:focus {
+        outline: none;
+        box-shadow: 0 4px 16px rgba(106,17,203,0.18);
+        background: #fff;
+    }
+    .btn-primary {
+        width: 100%;
+        padding: 0.8rem 0;
+        font-size: 1.15rem;
+        border-radius: 30px;
+        border: none;
+        background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.13);
+        transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .btn-primary:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+        opacity: 0.93;
+    }
+</style>
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+{% endblock %}

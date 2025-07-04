@@ -1,0 +1,133 @@
+<!-- templates/my_applications.html -->
+{% extends 'base.html' %}
+{% block title %}My Applications{% endblock %}
+{% block content %}
+<style>
+    body {
+        min-height: 100vh;
+        background: url("{{ url_for('static', filename='images/application_background.png') }}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    h2 {
+        color: #2a5298;
+        text-align: center;
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .table {
+        background: rgba(255,255,255,0.85);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+        overflow: hidden;
+        margin: 0 auto;
+        max-width: 900px;
+        border: 3px solid #6a11cb; /* Added visible border */
+    }
+    thead th {
+        background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border: 1px solid #6a11cb; /* Added border */
+        padding: 1rem;
+    }
+    tbody tr {
+        transition: background 0.2s, box-shadow 0.2s;
+        border-bottom: 1.5px solid #b3aee7; /* Row border */
+    }
+    tbody tr:last-child {
+        border-bottom: none;
+    }
+    
+    td {
+        padding: 0.9rem 1rem;
+        font-size: 1.2rem;
+        font-weight:500;
+        color: #222;
+        vertical-align: middle;
+        border-right: 1px solid #b3aee7; /* Column border */
+    }
+    td:last-child {
+        border-right: none;
+    }
+    .btn-link {
+        color: #2575fc;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 20px;
+        padding: 0.4rem 1.2rem;
+        background: linear-gradient(90deg, #e0e7ff 0%, #b3aee7 100%);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(30,60,114,0.08);
+        border: 1.5px solid #2575fc;
+        display: inline-block;
+    }
+    .btn-link:hover {
+        background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(67,233,123,0.12);
+        border: 1.5px solid #6a11cb;
+    }
+    @media (max-width: 700px) {
+        .table, thead, tbody, th, td, tr {
+            display: block;
+        }
+        thead {
+            display: none;
+        }
+        tr {
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(31,38,135,0.08);
+            border: 2px solid #6a11cb;
+        }
+        td {
+            padding: 1rem;
+            text-align: left;
+            position: relative;
+            border: none;
+            border-bottom: 1px solid #b3aee7;
+        }
+        td:before {
+            content: attr(data-label);
+            font-weight: 600;
+            color: #2575fc;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    }
+</style>
+<h2>My Applications</h2>
+{% if applications %}
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Job Title</th>
+        <th>Applied At</th>
+        <th>Resume</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for app in applications %}
+        <tr>
+          <td data-label="Job Title">{{ app.title }}</td>
+          <td data-label="Applied At">{{ app.applied_at }}</td>
+          <td data-label="Resume">
+            <a href="{{ url_for('download_resume', filename=app.resume_filename) }}" class="btn btn-link">
+              Download
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p style="color:#2a5298;text-align:center;font-size:1.2rem;">You have not applied to any jobs yet.</p>
+{% endif %}
+{% endblock %}

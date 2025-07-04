@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+    body {
+        min-height: 100vh;
+        background: url("{{ url_for('static', filename='images/indexbackground.png') }}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .text-center {
+        margin-top: 10vh;
+        background: rgba(255,255,255,0.15);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+        backdrop-filter: blur(6px);
+        padding: 3rem 2rem;
+        color: #fff;
+    }
+    h1 {
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .lead {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        color: #e0e0e0;
+    }
+    .btn {
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 30px;
+        margin: 0 0.5rem;
+        border: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    .btn-primary {
+        background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+        color: #fff;
+    }
+    .btn-success {
+        background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+        color: #fff;
+    }
+    .btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+        opacity: 0.92;
+    }
+</style>
+<div class="text-center">
+    <h1>Welcome to the Placement Communication Platform</h1>
+    <p class="lead">Login or Register to continue.</p>
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+    <a href="{{ url_for('register') }}" class="btn btn-success">Register</a>
+</div>
+{% endblock %}

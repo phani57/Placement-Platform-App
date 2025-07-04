@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Job Post PDF</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { color: #2a2a2a; }
+        p { font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h1>{{ job.title }}</h1>
+    <p><strong>Description:</strong></p>
+    <p>{{ job.description }}</p>
+    <p><strong>Target Audience:</strong> {{ job.target_audience }}</p>
+    <p><strong>Posted On:</strong> {{ job.created_at }}</p>
+</body>
+</html>

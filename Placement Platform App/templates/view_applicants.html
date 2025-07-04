@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Applicants for {{ job.title }}{% endblock %}
+{% block content %}
+<style>
+    body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #b3aee7 0%, #b6d0fc 100%);
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    h2 {
+        color: #2a5298;
+        text-align: center;
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .table {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(31,38,135,0.08);
+        overflow: hidden;
+        margin-top: 2rem;
+    }
+    .table th {
+        background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.08rem;
+        border: none;
+        padding: 1rem 0.7rem;
+    }
+    .table td {
+        color: #2a5298;
+        font-size: 1.05rem;
+        padding: 0.9rem 0.7rem;
+        vertical-align: middle;
+        border-top: 1px solid #e3e9fc;
+    }
+    .btn-link {
+        color: #2575fc;
+        font-weight: 600;
+        text-decoration: underline;
+        transition: color 0.2s;
+    }
+    .btn-link:hover {
+        color: #6a11cb;
+        text-decoration: none;
+    }
+    .no-applicants {
+        color: #2a5298;
+        text-align: center;
+        font-size: 1.15rem;
+        margin-top: 2.5rem;
+    }
+</style>
+<h2>Applicants for "{{ job.title }}"</h2>
+{% if applications %}
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Resume</th>
+                <th>Applied At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for app in applications %}
+            <tr>
+                <td>{{ app.name }}</td>
+                <td>{{ app.email }}</td>
+                <td>
+                    <a href="{{ url_for('download_resume', filename=app.resume_filename) }}" class="btn btn-link">Download Resume</a>
+                </td>
+                <td>{{ app.applied_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="no-applicants">No students have applied yet.</p>
+{% endif %}
+{% endblock %}
